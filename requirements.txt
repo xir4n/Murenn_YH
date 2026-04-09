@@ -1,0 +1,24 @@
+# --
+# requirements
+
+# choose a python version <= 3.13, because tensorflow (problem with litert-torch) is not yet supported in pip in later python versions.
+
+# packages required:
+docker
+flatbuffers
+jinja2
+soundfile
+librosa
+matplotlib
+numpy
+numba
+pyyaml
+onnx-tf
+onnxscript
+tensorflow
+torch
+torchinfo
+litert-torch
+tqdm
+torchsummary
+ai-edge-quantizer-nightly

@@ -1,0 +1,22 @@
+# --
+# requirements for the tensorflow framework
+
+dask
+docker
+flatbuffers
+jinja2
+librosa
+keras
+matplotlib
+numpy
+numba
+pandas
+tdqm
+tensorflow
+pyarrow
+pyyaml
+PyQt6
+pydantic
+soundfile
+tensorboard
+ai-edge-quantizer-nightly

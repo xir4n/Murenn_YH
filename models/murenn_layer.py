@@ -6,7 +6,8 @@ import math
 import torch
 import torch.nn as nn
 import murenn
-from murenn import UDTCWT
+# from murenn import UDTCWT
+from models.udtcwt import UDTCWTDirect as UDTCWT
 from murenn.dtcwt.nn import ModulusStable
 
 
@@ -108,11 +109,15 @@ class MuReNNLayer(torch.nn.Module):
         for j in range(self.dtcwt.J):
             xj = bps[j]
             if self.use_conv1d:
-                Wx_j_r = self.conv1d[j](xj.real) / math.sqrt(2) ** j
-                Wx_j_i = self.conv1d[j](xj.imag) / math.sqrt(2) ** j
+                # Wx_j_r = self.conv1d[j](xj.real) / math.sqrt(2) ** j
+                # Wx_j_i = self.conv1d[j](xj.imag) / math.sqrt(2) ** j
+                Wx_j_r = self.conv1d[j](xj[:, :self.in_channels, :]) / math.sqrt(2) ** j
+                Wx_j_i = self.conv1d[j](xj[:, self.in_channels:, :]) / math.sqrt(2) ** j
             else:
-                Wx_j_r = bps[j].real / math.sqrt(2) ** j
-                Wx_j_i = bps[j].imag / math.sqrt(2) ** j
+                # Wx_j_r = bps[j].real / math.sqrt(2) ** j
+                # Wx_j_i = bps[j].imag / math.sqrt(2) ** j
+                Wx_j_r = xj[:, :self.in_channels, :] / math.sqrt(2) ** j
+                Wx_j_i = xj[:, self.in_channels:, :] / math.sqrt(2) ** j
             u_psi_x_j = ModulusStable.apply(Wx_j_r, Wx_j_i)
 
             if self.use_power:

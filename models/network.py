@@ -2,7 +2,7 @@ import math
 import torch
 import torch.nn as nn
 import murenn
-from murenn import UDTCWT
+from models.udtcwt import UDTCWTDirect as UDTCWT
 from murenn.dtcwt.nn import ModulusStable
 from models.gabor import Gabor
 from torchaudio.transforms import MelSpectrogram
